@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/coskunaydinoglu/countlychoketest/issues"
   },
-  "homepage": "https://github.com/coskunaydinoglu/countlychoketest#readme"
+  "homepage": "https://github.com/coskunaydinoglu/countlychoketest#readme",
+  "dependencies": {
+    "got": "^13.0.0"
+  }
 }
