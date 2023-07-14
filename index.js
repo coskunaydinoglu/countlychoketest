@@ -114,7 +114,7 @@ function makeRequest(cnt) {
     };
     counter.sent++;
     got.post(SERVER_URL, options, function(error, response) {
-        console.log(error, response);
+        //console.log(error, response);
         if (error || !response) {
             counter.error++;
         }
