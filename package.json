@@ -1,0 +1,29 @@
+{
+  "name": "countlychoketest",
+  "version": "1.0.0",
+  "description": "Clone of choke test using got package",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coskunaydinoglu/countlychoketest.git"
+  },
+  "keywords": [
+    "countly",
+    "choketest",
+    "loadtest"
+  ],
+  "author": "Ümit Coşkun Aydınoğlu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coskunaydinoglu/countlychoketest/issues"
+  },
+  "homepage": "https://github.com/coskunaydinoglu/countlychoketest#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "got": "^13.0.0"
+  }
+}
