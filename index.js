@@ -128,6 +128,8 @@ async function makeRequest(cnt) {
             counter[response.statusCode]++;
         }
     } catch(error) {
+        console.log("error catched", error)
+        counter.error++;
         if (stopOnError && counter.error > 0) {
             console.log(((Date.now() - start) / 1000 / 60).toFixed(2), JSON.stringify(counter));
             process.exit(0);
