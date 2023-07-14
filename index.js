@@ -11,7 +11,7 @@ const start = Date.now();
 
 var counter = {sent: 0, success: 0, error: 0};
 var now = Date.now() - userLimit;
-function makeRequest(cnt) {
+async function makeRequest(cnt) {
     var body = {};
     body.device_id = cnt;
     body.app_key = APP_KEY;
@@ -113,7 +113,29 @@ function makeRequest(cnt) {
         https: { rejectUnauthorized: false }
     };
     counter.sent++;
-    got.post(SERVER_URL, options, function(error, response) {
+    try {
+
+        const response = await got.post(SERVER_URL, options)
+        if(!response) {
+            counter.error++;
+        } else if(response.statusCode === 200) {
+            counter.success++;
+        } else {
+            counter.error++;
+            if (!counter[response.statusCode]) {
+                counter[response.statusCode] = 0;
+            }
+            counter[response.statusCode]++;
+        }
+    } catch(error) {
+        if (stopOnError && counter.error > 0) {
+            console.log(((Date.now() - start) / 1000 / 60).toFixed(2), JSON.stringify(counter));
+            process.exit(0);
+        }
+
+    }
+
+    /* got.post(SERVER_URL, options, function(error, response) {
         //console.log(error, response);
         if (error || !response) {
             counter.error++;
@@ -132,7 +154,7 @@ function makeRequest(cnt) {
             console.log(((Date.now() - start) / 1000 / 60).toFixed(2), JSON.stringify(counter));
             process.exit(0);
         }
-    });
+    }); */
 }
 
 function loop(i) {
@@ -148,7 +170,6 @@ function loop(i) {
         }
     }, 1);
 }
-
 loop(1);
 var interval = setInterval(function() {
     console.log(((Date.now() - start) / 1000 / 60).toFixed(2), JSON.stringify(counter));
